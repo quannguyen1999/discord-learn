@@ -1,7 +1,10 @@
 import { NavigationSidebar } from "@/components/navigation/navigator-sidebar";
-
+import { currentProfile } from "@/lib/current-profile";
+import { redirectToSignIn } from "@clerk/nextjs/server";
+import {db} from '@/lib/db';
+import { redirect } from "next/navigation";
 const MainLayout = async ({
-    children
+    children,
 }: {
     children: React.ReactNode;
 }) => {
