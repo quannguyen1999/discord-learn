@@ -5,6 +5,7 @@ import { Inter, Open_Sans } from 'next/font/google'
 import { cn } from '@/lib/utils'
 import { ThemeProvider } from '@/components/providers/theme-provider'
 import { ModalProvider } from '@/components/providers/modal-provider'
+import { SocketProvider } from '@/components/providers/socket-provider'
 
 const inter = Inter({ subsets: ['latin'] })
 const font = Open_Sans({ subsets: ["latin"] });
@@ -25,14 +26,16 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en" suppressContentEditableWarning={true}>
         <body className={cn(font.className, "bg-white dark:bg-[#313338]")}>
-          <ThemeProvider attribute='class'
-            defaultTheme='dark'
-            enableSystem={true}
-            storageKey='discord-theme'
-          >
-            <ModalProvider />
-            {children}
-          </ThemeProvider>
+          <SocketProvider>
+            <ThemeProvider attribute='class'
+              defaultTheme='dark'
+              enableSystem={true}
+              storageKey='discord-theme'
+            >
+              <ModalProvider />
+              {children}
+            </ThemeProvider>
+          </SocketProvider>
         </body>
       </html>  
     </ClerkProvider>
